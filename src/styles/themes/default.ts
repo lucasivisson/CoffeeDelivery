@@ -1,6 +1,6 @@
 export const defaultTheme = {
-  'yellow-dark': '#C47F17',
   'yellow': '#DBAC2C',
+  'yellow-dark': '#C47F17',
   'yellow-light': '#F1E9C9',
   'purple-dark': '#4B2995',
   'purple' :'#8047f8',
@@ -14,5 +14,5 @@ export const defaultTheme = {
   'base-input': '#EDEDED',
   'base-card': '#F3F2F2',
   'background': '#FAFAFA',
-  'white': '#FFFFFF'
+  'white': '#FFFFFF',
 }
