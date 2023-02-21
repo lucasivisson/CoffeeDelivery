@@ -1,4 +1,4 @@
-import { HeaderContainer } from "./styles";
+import { HeaderContainer, LocationContainer } from "./styles";
 import logo from '../../assets/logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react';
 
@@ -8,13 +8,15 @@ export function Header() {
       <nav>
         <ul>
           <img src={logo} />
-          <ul>
+          <LocationContainer>
             <div>
-              <MapPin/>
+              <MapPin size={24} weight="fill"/>
               <p>Porto Alegre, RS</p>
             </div>
-            <ShoppingCart/>
-          </ul>
+            <div>
+              <ShoppingCart size={24} weight="fill"/>
+            </div>
+          </LocationContainer>
         </ul>
       </nav>
     </HeaderContainer>
