@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -32,11 +32,11 @@ export const LocationCheckoutContainer = styled.ul`
 export const LocationContainer = styled.div`
   gap: 0.3rem;
   background: ${(props) => props.theme['base-button']};
-  color: ${props => props.theme['purple-dark']}; 
+  color: ${(props) => props.theme['purple-dark']};
 `
 
 export const CheckoutContainer = styled.div`
   background: ${(props) => props.theme['yellow-light']};
-  color: ${props => props.theme['yellow-dark']};
+  color: ${(props) => props.theme['yellow-dark']};
   cursor: pointer;
 `

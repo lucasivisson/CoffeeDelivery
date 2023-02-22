@@ -1,9 +1,9 @@
 export const defaultTheme = {
-  'yellow': '#DBAC2C',
+  yellow: '#DBAC2C',
   'yellow-dark': '#C47F17',
   'yellow-light': '#F1E9C9',
   'purple-dark': '#4B2995',
-  'purple' :'#8047f8',
+  purple: '#8047f8',
   'purple-light': '#EBE5F9',
   'base-title': '#272221',
   'base-subtitle': '#403937',
@@ -13,6 +13,6 @@ export const defaultTheme = {
   'base-button': '#E6E5E5',
   'base-input': '#EDEDED',
   'base-card': '#F3F2F2',
-  'background': '#FAFAFA',
-  'white': '#FFFFFF',
+  background: '#FAFAFA',
+  white: '#FFFFFF',
 }
