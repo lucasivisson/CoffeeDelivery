@@ -1,42 +1,60 @@
 import homeImage from '../../assets/homeImage.svg'
-import { HomeContainer } from './style'
+import {
+  HomeContainer,
+  TextBoxContainer,
+  GeneralListContainer,
+  ListContainer,
+  ShoppingCardContainer,
+  TimerContainer,
+  PackageContainer,
+  CoffeeContainer,
+} from './style'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 
 export function Home() {
   return (
     <HomeContainer>
-      <div>
+      <TextBoxContainer>
         <div>
-          <h1>Encontre o café perfeito para qualquer hora do dia</h1>
+          <p>Encontre o café perfeito para qualquer hora do dia</p>
           <p>
             Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
             hora
           </p>
         </div>
-        <div>
-          <ul>
+        <GeneralListContainer>
+          <ListContainer>
             <li>
-              <ShoppingCart size={24} weight="fill" />
+              <ShoppingCardContainer>
+                <ShoppingCart size={18} weight="fill" />
+              </ShoppingCardContainer>
               Compra simples e segura
             </li>
             <li>
-              <Timer size={24} weight="fill" />
+              <TimerContainer>
+                <Timer size={18} weight="fill" />
+              </TimerContainer>
               Entrega rápida e rastreada
             </li>
-          </ul>
-          <ul>
+          </ListContainer>
+          <ListContainer>
             <li>
-              <Package size={24} weight="fill" />
+              <PackageContainer>
+                <Package size={18} weight="fill" />
+              </PackageContainer>
               Embalagem mantém o café intacto
             </li>
             <li>
-              <Coffee size={24} weight="fill" />O café chega fresquinho até você
+              <CoffeeContainer>
+                <Coffee size={18} weight="fill" />
+              </CoffeeContainer>
+              O café chega fresquinho até você
             </li>
-          </ul>
-        </div>
-      </div>
+          </ListContainer>
+        </GeneralListContainer>
+      </TextBoxContainer>
       <div>
-        <img src={homeImage} />
+        <img src={homeImage} alt="" />
       </div>
     </HomeContainer>
   )

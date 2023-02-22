@@ -25,7 +25,7 @@ export const LocationCheckoutContainer = styled.ul`
     border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
   }
 `
 
