@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
   width: 100%;
-  background: red;
 
   nav > ul {
     display: flex;
@@ -27,7 +26,6 @@ export const LocationCheckoutContainer = styled.ul`
     display: flex;
     align-items: center;
     padding: 0.5rem 0.5rem;
-    cursor: pointer;
   }
 `
 
@@ -40,4 +38,5 @@ export const LocationContainer = styled.div`
 export const CheckoutContainer = styled.div`
   background: ${(props) => props.theme['yellow-light']};
   color: ${props => props.theme['yellow-dark']};
+  cursor: pointer;
 `
