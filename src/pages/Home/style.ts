@@ -101,4 +101,6 @@ export const CoffeeListContainer = styled.body`
     font-size: 2rem;
     margin: 3rem 0;
   }
+
+  margin-bottom: 5rem;
 `
