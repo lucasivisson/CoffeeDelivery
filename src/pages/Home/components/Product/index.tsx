@@ -6,28 +6,38 @@ import {
   AddCoffeButtonContainer,
   ShoppingCartContainer,
 } from './styles'
-import image1 from '../../../../assets/coffees/coffee1.svg'
 import { ShoppingCart } from 'phosphor-react'
 
-export function Product() {
+type ProductData = {
+  img: string
+  types: string[]
+  price: string
+  title: string
+  subtitle: string
+}
+
+export function Product({ img, types, price, title, subtitle }: ProductData) {
   return (
     <CoffeeCardContainer>
       <CoffeeInfoContainer>
-        <img src={image1} alt="" />
-        <span>TRADICIONAL</span>
-        <p className="title-coffee">Expresso Tradicional</p>
-        <p className="text-coffee">
-          O tradicional café feito com água quente e grãos moídos
-        </p>
+        <img src={`src/assets/coffees/${img}.svg`} alt="" />
+        <div className="coffee-type">
+          {types.map((type) => {
+            return <span key={type}>{type}</span>
+          })}
+        </div>
+        <p className="title-coffee">{title}</p>
+        <p className="text-coffee">{subtitle}</p>
       </CoffeeInfoContainer>
       <CoffeePriceContainer>
         <div>
           <span className="dollar-sign">R$</span>
-          <span className="coffee-price">9,90</span>
+          <span className="coffee-price">{price}</span>
         </div>
         <ButtonsContainer>
           <AddCoffeButtonContainer>
-            <button>➖</button>1<button>➕</button>
+            <button className="minus">-</button>1
+            <button className="plus">+</button>
           </AddCoffeButtonContainer>
           <ShoppingCartContainer>
             <ShoppingCart size={24} weight="fill" />

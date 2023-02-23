@@ -13,6 +13,7 @@ import {
 } from './style'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { Product } from './components/Product'
+import { coffees } from '../../data/data.json'
 
 export function Home() {
   return (
@@ -64,7 +65,19 @@ export function Home() {
       <CoffeeListContainer>
         <h2>Nossos cafés</h2>
         <body>
-          <Product />
+          {coffees.map((coffee) => {
+            return (
+              <div className="coffee-card" key={coffee.title}>
+                <Product
+                  img={coffee.img}
+                  types={coffee.types}
+                  price={coffee.price}
+                  title={coffee.title}
+                  subtitle={coffee.subtitle}
+                />
+              </div>
+            )
+          })}
         </body>
       </CoffeeListContainer>
     </HomeContainer>

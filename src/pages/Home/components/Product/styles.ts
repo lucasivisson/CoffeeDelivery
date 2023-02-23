@@ -6,7 +6,7 @@ export const CoffeeCardContainer = styled.div`
   height: 18.5rem;
   border-top-right-radius: 2.5rem;
   border-bottom-left-radius: 2.5rem;
-  padding: 1rem 0;
+  padding: 1rem 0.5rem;
 
   display: flex;
   flex-direction: column;
@@ -43,13 +43,21 @@ export const CoffeeInfoContainer = styled.div`
     font-weight: 400;
     color: ${(props) => props.theme['base-label']};
   }
+
+  .coffee-type {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 export const CoffeePriceContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 85%;
+  width: 100%;
 
   .dollar-sign {
     font-size: 0.875rem;
@@ -64,7 +72,7 @@ export const CoffeePriceContainer = styled.div`
 `
 
 export const ButtonsContainer = styled.div`
-  width: 65%;
+  width: 60%;
   display: flex;
   justify-content: space-around;
 `
@@ -74,6 +82,11 @@ export const ShoppingCartContainer = styled.div`
   padding: 0.4rem 0.6rem;
   border-radius: 8px;
   color: ${(props) => props.theme.white};
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => props.theme.purple};
+  }
 `
 
 export const AddCoffeButtonContainer = styled.div`
@@ -90,6 +103,23 @@ export const AddCoffeButtonContainer = styled.div`
     background-color: unset;
     width: 2rem;
     height: 2.5rem;
-    font-size: 0.75rem;
+    font-size: 1.5rem;
+    color: ${(props) => props.theme.purple};
+  }
+
+  .minus {
+    cursor: pointer;
+  }
+
+  .minus:hover {
+    color: ${(props) => props.theme['purple-dark']};
+  }
+
+  .plus {
+    cursor: pointer;
+  }
+
+  .plus:hover {
+    color: ${(props) => props.theme['purple-dark']};
   }
 `

@@ -5,7 +5,7 @@ export const HomeContainer = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
   flex-direction: column;
-  max-width: 68rem;
+  max-width: 72rem;
   height: 100%;
 `
 
@@ -94,6 +94,8 @@ export const CoffeeIconContainer = styled.span`
 `
 
 export const CoffeeListContainer = styled.body`
+  margin-bottom: 5rem;
+
   h2 {
     font-family: 'Baloo 2';
     font-weight: 800;
@@ -102,5 +104,15 @@ export const CoffeeListContainer = styled.body`
     margin: 3rem 0;
   }
 
-  margin-bottom: 5rem;
+  body {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1.5rem;
+  }
+
+  .coffee-card {
+    margin-top: 2rem;
+  }
 `
