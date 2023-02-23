@@ -1,11 +1,20 @@
 import styled from 'styled-components'
 
-export const HomeContainer = styled.main`
+export const HomeContainer = styled.div`
+  display: flex;
+  margin: 0 auto;
+  padding: 0 1rem;
+  flex-direction: column;
+  max-width: 68rem;
+  height: 100%;
+`
+
+export const MarketingHomeContainer = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin: 5rem 10rem;
+  margin: 6rem 0;
   gap: 2rem;
   height: 22rem;
 `
@@ -39,7 +48,7 @@ export const GeneralListContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
 
   ul {
     list-style-type: none;
@@ -68,18 +77,28 @@ export const ListContainer = styled.ul`
   }
 `
 
-export const ShoppingCardContainer = styled.span`
+export const ShoppingCardIconContainer = styled.span`
   background: ${(props) => props.theme['yellow-dark']};
 `
 
-export const TimerContainer = styled.span`
+export const TimerIconContainer = styled.span`
   background: ${(props) => props.theme.yellow};
 `
 
-export const PackageContainer = styled.span`
+export const PackageIconContainer = styled.span`
   background: ${(props) => props.theme['base-text']};
 `
 
-export const CoffeeContainer = styled.span`
+export const CoffeeIconContainer = styled.span`
   background: ${(props) => props.theme.purple};
+`
+
+export const CoffeeListContainer = styled.body`
+  h2 {
+    font-family: 'Baloo 2';
+    font-weight: 800;
+    color: ${(props) => props.theme['base-subtitle']};
+    font-size: 2rem;
+    margin: 2rem 0;
+  }
 `

@@ -1,61 +1,72 @@
 import homeImage from '../../assets/homeImage.svg'
 import {
-  HomeContainer,
+  MarketingHomeContainer,
   TextBoxContainer,
   GeneralListContainer,
   ListContainer,
-  ShoppingCardContainer,
-  TimerContainer,
-  PackageContainer,
-  CoffeeContainer,
+  ShoppingCardIconContainer,
+  TimerIconContainer,
+  PackageIconContainer,
+  CoffeeIconContainer,
+  CoffeeListContainer,
+  HomeContainer,
 } from './style'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
+import { Product } from './components/Product'
 
 export function Home() {
   return (
     <HomeContainer>
-      <TextBoxContainer>
+      <MarketingHomeContainer>
+        <TextBoxContainer>
+          <div>
+            <p>Encontre o café perfeito para qualquer hora do dia</p>
+            <p>
+              Com o Coffee Delivery você recebe seu café onde estiver, a
+              qualquer hora
+            </p>
+          </div>
+          <GeneralListContainer>
+            <ListContainer>
+              <li>
+                <ShoppingCardIconContainer>
+                  <ShoppingCart size={18} weight="fill" />
+                </ShoppingCardIconContainer>
+                Compra simples e segura
+              </li>
+              <li>
+                <TimerIconContainer>
+                  <Timer size={18} weight="fill" />
+                </TimerIconContainer>
+                Entrega rápida e rastreada
+              </li>
+            </ListContainer>
+            <ListContainer>
+              <li>
+                <PackageIconContainer>
+                  <Package size={18} weight="fill" />
+                </PackageIconContainer>
+                Embalagem mantém o café intacto
+              </li>
+              <li>
+                <CoffeeIconContainer>
+                  <Coffee size={18} weight="fill" />
+                </CoffeeIconContainer>
+                O café chega fresquinho até você
+              </li>
+            </ListContainer>
+          </GeneralListContainer>
+        </TextBoxContainer>
         <div>
-          <p>Encontre o café perfeito para qualquer hora do dia</p>
-          <p>
-            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
-            hora
-          </p>
+          <img src={homeImage} alt="" />
         </div>
-        <GeneralListContainer>
-          <ListContainer>
-            <li>
-              <ShoppingCardContainer>
-                <ShoppingCart size={18} weight="fill" />
-              </ShoppingCardContainer>
-              Compra simples e segura
-            </li>
-            <li>
-              <TimerContainer>
-                <Timer size={18} weight="fill" />
-              </TimerContainer>
-              Entrega rápida e rastreada
-            </li>
-          </ListContainer>
-          <ListContainer>
-            <li>
-              <PackageContainer>
-                <Package size={18} weight="fill" />
-              </PackageContainer>
-              Embalagem mantém o café intacto
-            </li>
-            <li>
-              <CoffeeContainer>
-                <Coffee size={18} weight="fill" />
-              </CoffeeContainer>
-              O café chega fresquinho até você
-            </li>
-          </ListContainer>
-        </GeneralListContainer>
-      </TextBoxContainer>
-      <div>
-        <img src={homeImage} alt="" />
-      </div>
+      </MarketingHomeContainer>
+      <CoffeeListContainer>
+        <h2>Nossos cafés</h2>
+        <div>
+          <Product />
+        </div>
+      </CoffeeListContainer>
     </HomeContainer>
   )
 }
