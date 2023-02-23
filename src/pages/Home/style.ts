@@ -14,7 +14,7 @@ export const MarketingHomeContainer = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  margin: 6rem 0;
+  margin: 5rem 0;
   gap: 2rem;
   height: 22rem;
 `
@@ -99,6 +99,6 @@ export const CoffeeListContainer = styled.body`
     font-weight: 800;
     color: ${(props) => props.theme['base-subtitle']};
     font-size: 2rem;
-    margin: 2rem 0;
+    margin: 3rem 0;
   }
 `
