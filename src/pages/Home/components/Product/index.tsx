@@ -15,8 +15,9 @@ type ProductData = {
   price: string
   title: string
   subtitle: string
-  onAddProduct: (title: string, price: string) => void
   product: ProductRequest | undefined
+  onAddProduct: (title: string, price: string) => void
+  onRemoveProduct: (title: string) => void
 }
 
 export function Product({
@@ -26,10 +27,15 @@ export function Product({
   title,
   subtitle,
   onAddProduct,
+  onRemoveProduct,
   product,
 }: ProductData) {
   function handleAddProduct() {
     onAddProduct(title, price)
+  }
+
+  function handleRemoveProduct() {
+    onRemoveProduct(title)
   }
 
   return (
@@ -51,7 +57,9 @@ export function Product({
         </div>
         <ButtonsContainer>
           <AddCoffeButtonContainer>
-            <button className="minus">-</button>
+            <button className="minus" onClick={handleRemoveProduct}>
+              -
+            </button>
             {product ? product.amount : '0'}
             <button className="plus" onClick={handleAddProduct}>
               +

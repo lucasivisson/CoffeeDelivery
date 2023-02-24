@@ -50,6 +50,30 @@ export function Home() {
     }
   }
 
+  function onRemoveProduct(title: string) {
+    const productFounded = products.find((product) => product.title === title)
+
+    if (productFounded) {
+      const amount = productFounded.amount - 1
+      if (amount === 0) {
+        const filteredProducts = products.filter(
+          (product) => product.title !== title,
+        )
+        setProducts(filteredProducts)
+      } else {
+        setProducts((state) => {
+          return state.map((product) => {
+            if (product.title === title) {
+              return { ...product, amount }
+            } else {
+              return product
+            }
+          })
+        })
+      }
+    }
+  }
+
   return (
     <HomeContainer>
       <MarketingHomeContainer>
@@ -109,6 +133,7 @@ export function Home() {
                   title={coffee.title}
                   subtitle={coffee.subtitle}
                   onAddProduct={onAddProduct}
+                  onRemoveProduct={onRemoveProduct}
                   product={products.find(
                     (product) => product.title === coffee.title,
                   )}
