@@ -7,8 +7,11 @@ import {
 } from './styles'
 import logo from '../../assets/logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
+import { useProductContext } from '../../contexts/ProductContext'
 
 export function Header() {
+  const { products } = useProductContext()
+
   return (
     <HeaderContainer>
       <nav>
@@ -24,7 +27,7 @@ export function Header() {
             <StyledLink to={`checkout`}>
               <CheckoutContainer>
                 <ShoppingCart size={24} weight="fill" />
-                <button>3</button>
+                <span>{products.length}</span>
               </CheckoutContainer>
             </StyledLink>
           </LocationCheckoutContainer>

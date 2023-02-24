@@ -7,7 +7,7 @@ import {
   ShoppingCartContainer,
 } from './styles'
 import { ShoppingCart } from 'phosphor-react'
-import { ProductRequest } from '../..'
+import { useProductContext } from '../../../../contexts/ProductContext'
 
 type ProductData = {
   img: string
@@ -15,21 +15,11 @@ type ProductData = {
   price: string
   title: string
   subtitle: string
-  product: ProductRequest | undefined
-  onAddProduct: (title: string, price: string) => void
-  onRemoveProduct: (title: string) => void
 }
 
-export function Product({
-  img,
-  types,
-  price,
-  title,
-  subtitle,
-  onAddProduct,
-  onRemoveProduct,
-  product,
-}: ProductData) {
+export function Product({ img, types, price, title, subtitle }: ProductData) {
+  const { onAddProduct, onRemoveProduct, products } = useProductContext()
+
   function handleAddProduct() {
     onAddProduct(title, price)
   }
@@ -37,6 +27,8 @@ export function Product({
   function handleRemoveProduct() {
     onRemoveProduct(title)
   }
+
+  const product = products.find((product) => product.title === title)
 
   return (
     <CoffeeCardContainer>

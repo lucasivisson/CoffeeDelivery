@@ -41,7 +41,7 @@ export const CheckoutContainer = styled.div`
   color: ${(props) => props.theme['yellow-dark']};
   cursor: pointer;
 
-  button {
+  span {
     margin: -2rem -1.2rem 0 0;
     border: none;
     background: ${(props) => props.theme['yellow-dark']};
