@@ -1,3 +1,11 @@
+import { useContext } from 'react'
+import {
+  ProductContext,
+  // useProductContext,
+} from '../../contexts/ProductContext'
+
 export function Checkout() {
-  return <h1>Carrinho</h1>
+  const { a } = useContext(ProductContext)
+  // const {  } = useProductContext()
+  return <h1>{a}</h1>
 }
