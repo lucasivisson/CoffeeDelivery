@@ -83,6 +83,7 @@ export const ShoppingCartContainer = styled.div`
   border-radius: 8px;
   color: ${(props) => props.theme.white};
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 
   &:hover {
     background: ${(props) => props.theme.purple};
@@ -109,6 +110,7 @@ export const AddCoffeButtonContainer = styled.div`
 
   .minus {
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
   }
 
   .minus:hover {
@@ -121,5 +123,6 @@ export const AddCoffeButtonContainer = styled.div`
 
   .plus:hover {
     color: ${(props) => props.theme['purple-dark']};
+    transition: all 0.2s ease-in-out;
   }
 `

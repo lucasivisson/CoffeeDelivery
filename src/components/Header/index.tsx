@@ -3,29 +3,30 @@ import {
   HeaderContainer,
   LocationCheckoutContainer,
   LocationContainer,
+  StyledLink,
 } from './styles'
 import logo from '../../assets/logo.svg'
 import { ShoppingCart, MapPin } from 'phosphor-react'
-import { Link } from 'react-router-dom'
 
 export function Header() {
   return (
     <HeaderContainer>
       <nav>
         <ul>
-          <Link to={``}>
+          <StyledLink to={``}>
             <img src={logo} alt="" />
-          </Link>
+          </StyledLink>
           <LocationCheckoutContainer>
             <LocationContainer>
               <MapPin size={24} weight="fill" />
               <p>Porto Alegre, RS</p>
             </LocationContainer>
-            <Link to={`checkout`}>
+            <StyledLink to={`checkout`}>
               <CheckoutContainer>
                 <ShoppingCart size={24} weight="fill" />
+                <button>3</button>
               </CheckoutContainer>
-            </Link>
+            </StyledLink>
           </LocationCheckoutContainer>
         </ul>
       </nav>
