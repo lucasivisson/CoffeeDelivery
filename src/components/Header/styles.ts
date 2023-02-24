@@ -1,7 +1,8 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const HeaderContainer = styled.header`
-  width: 100%;
+  width: 100vw;
 
   nav > ul {
     display: flex;
@@ -39,4 +40,19 @@ export const CheckoutContainer = styled.div`
   background: ${(props) => props.theme['yellow-light']};
   color: ${(props) => props.theme['yellow-dark']};
   cursor: pointer;
+
+  button {
+    margin: -2rem -1.2rem 0 0;
+    border: none;
+    background: ${(props) => props.theme['yellow-dark']};
+    color: ${(props) => props.theme.white};
+    font-weight: bold;
+    font-size: 0.75rem;
+    border-radius: 16px;
+    padding: 0.2rem 0.4rem;
+  }
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `
