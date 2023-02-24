@@ -14,8 +14,42 @@ import {
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { Product } from './components/Product'
 import { coffees } from '../../data/data.json'
+import { useState } from 'react'
+
+export type ProductRequest = {
+  title: string
+  price: string
+  amount: number
+}
 
 export function Home() {
+  const [products, setProducts] = useState<ProductRequest[]>([])
+
+  function onAddProduct(title: string, price: string) {
+    const productFounded = products.find((product) => product.title === title)
+
+    if (productFounded) {
+      setProducts((state) => {
+        return state.map((product) => {
+          if (product.title === title) {
+            return { ...product, amount: product.amount + 1 }
+          } else {
+            return product
+          }
+        })
+      })
+    } else {
+      const product: ProductRequest = {
+        title,
+        price,
+        amount: 1,
+      }
+      setProducts((state) => {
+        return [...state, product]
+      })
+    }
+  }
+
   return (
     <HomeContainer>
       <MarketingHomeContainer>
@@ -74,6 +108,10 @@ export function Home() {
                   price={coffee.price}
                   title={coffee.title}
                   subtitle={coffee.subtitle}
+                  onAddProduct={onAddProduct}
+                  product={products.find(
+                    (product) => product.title === coffee.title,
+                  )}
                 />
               </div>
             )

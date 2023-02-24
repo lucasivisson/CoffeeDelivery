@@ -7,6 +7,7 @@ import {
   ShoppingCartContainer,
 } from './styles'
 import { ShoppingCart } from 'phosphor-react'
+import { ProductRequest } from '../..'
 
 type ProductData = {
   img: string
@@ -14,9 +15,23 @@ type ProductData = {
   price: string
   title: string
   subtitle: string
+  onAddProduct: (title: string, price: string) => void
+  product: ProductRequest | undefined
 }
 
-export function Product({ img, types, price, title, subtitle }: ProductData) {
+export function Product({
+  img,
+  types,
+  price,
+  title,
+  subtitle,
+  onAddProduct,
+  product,
+}: ProductData) {
+  function handleAddProduct() {
+    onAddProduct(title, price)
+  }
+
   return (
     <CoffeeCardContainer>
       <CoffeeInfoContainer>
@@ -36,8 +51,11 @@ export function Product({ img, types, price, title, subtitle }: ProductData) {
         </div>
         <ButtonsContainer>
           <AddCoffeButtonContainer>
-            <button className="minus">-</button>1
-            <button className="plus">+</button>
+            <button className="minus">-</button>
+            {product ? product.amount : '0'}
+            <button className="plus" onClick={handleAddProduct}>
+              +
+            </button>
           </AddCoffeButtonContainer>
           <ShoppingCartContainer>
             <ShoppingCart size={24} weight="fill" />
