@@ -8,11 +8,12 @@ export type ProductRequest = {
   title: string
   price: string
   amount: number
+  img: string
 }
 
 type ProductContextType = {
   products: ProductRequest[]
-  onAddProduct: (title: string, price: string) => void
+  onAddProduct: (title: string, price: string, img: string) => void
   onRemoveProduct: (title: string) => void
 }
 
@@ -23,7 +24,7 @@ export const ProductContext = createContext<ProductContextType>(
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
   const [products, setProducts] = useState<ProductRequest[]>([])
 
-  function onAddProduct(title: string, price: string) {
+  function onAddProduct(title: string, price: string, img: string) {
     const productFounded = products.find((product) => product.title === title)
 
     if (productFounded) {
@@ -41,6 +42,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
         title,
         price,
         amount: 1,
+        img,
       }
       setProducts((state) => {
         return [...state, product]
