@@ -8,6 +8,7 @@ import {
 } from './styles'
 import { ShoppingCart } from 'phosphor-react'
 import { useProductContext } from '../../../../contexts/ProductContext'
+import { Link } from 'react-router-dom'
 
 type ProductData = {
   img: string
@@ -20,11 +21,11 @@ type ProductData = {
 export function Product({ img, types, price, title, subtitle }: ProductData) {
   const { onAddProduct, onRemoveProduct, products } = useProductContext()
 
-  function handleAddProduct() {
-    onAddProduct(title, price)
+  function handleIncrementProduct() {
+    onAddProduct(title, price, img)
   }
 
-  function handleRemoveProduct() {
+  function handleDecrementProduct() {
     onRemoveProduct(title)
   }
 
@@ -49,17 +50,19 @@ export function Product({ img, types, price, title, subtitle }: ProductData) {
         </div>
         <ButtonsContainer>
           <AddCoffeButtonContainer>
-            <button className="minus" onClick={handleRemoveProduct}>
+            <button className="minus" onClick={handleDecrementProduct}>
               -
             </button>
             {product ? product.amount : '0'}
-            <button className="plus" onClick={handleAddProduct}>
+            <button className="plus" onClick={handleIncrementProduct}>
               +
             </button>
           </AddCoffeButtonContainer>
-          <ShoppingCartContainer>
-            <ShoppingCart size={24} weight="fill" />
-          </ShoppingCartContainer>
+          <Link to={`checkout`}>
+            <ShoppingCartContainer>
+              <ShoppingCart size={24} weight="fill" />
+            </ShoppingCartContainer>
+          </Link>
         </ButtonsContainer>
       </CoffeePriceContainer>
     </CoffeeCardContainer>
