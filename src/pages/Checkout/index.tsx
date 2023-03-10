@@ -1,3 +1,10 @@
+import { Sidebar } from './components/Sidebar'
+
 export function Checkout() {
-  return <h1>oi</h1>
+  return (
+    <>
+      <body>body</body>
+      <Sidebar />
+    </>
+  )
 }
