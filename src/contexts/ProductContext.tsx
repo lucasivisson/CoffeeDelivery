@@ -6,14 +6,15 @@ interface IChildrenProps {
 
 export type ProductRequest = {
   title: string
-  price: string
+  price: number
   amount: number
   img: string
 }
 
 type ProductContextType = {
   products: ProductRequest[]
-  onAddProduct: (title: string, price: string, img: string) => void
+  onIncrementProduct: (title: string, price: number, img: string) => void
+  onDecrementProduct: (title: string) => void
   onRemoveProduct: (title: string) => void
 }
 
@@ -24,7 +25,7 @@ export const ProductContext = createContext<ProductContextType>(
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
   const [products, setProducts] = useState<ProductRequest[]>([])
 
-  function onAddProduct(title: string, price: string, img: string) {
+  function onIncrementProduct(title: string, price: number, img: string) {
     const productFounded = products.find((product) => product.title === title)
 
     if (productFounded) {
@@ -50,16 +51,13 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
     }
   }
 
-  function onRemoveProduct(title: string) {
+  function onDecrementProduct(title: string) {
     const productFounded = products.find((product) => product.title === title)
 
     if (productFounded) {
       const amount = productFounded.amount - 1
       if (amount === 0) {
-        const filteredProducts = products.filter(
-          (product) => product.title !== title,
-        )
-        setProducts(filteredProducts)
+        onRemoveProduct(title)
       } else {
         setProducts((state) => {
           return state.map((product) => {
@@ -74,9 +72,22 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
     }
   }
 
+  function onRemoveProduct(title: string) {
+    const filteredProducts = products.filter(
+      (product) => product.title !== title,
+    )
+
+    setProducts(filteredProducts)
+  }
+
   return (
     <ProductContext.Provider
-      value={{ products, onAddProduct, onRemoveProduct }}
+      value={{
+        products,
+        onIncrementProduct,
+        onDecrementProduct,
+        onRemoveProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>
