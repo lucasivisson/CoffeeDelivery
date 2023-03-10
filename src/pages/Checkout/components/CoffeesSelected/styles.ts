@@ -36,3 +36,18 @@ export const AddCoffeButtonContainer = styled.div`
     transition: all 0.2s ease-in-out;
   }
 `
+
+export const ActionsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+export const CoffeesSelectedContainer = styled.div`
+  display: flex;
+  flex-direction: colum;
+`
+
+export const CoffeeBoxContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
