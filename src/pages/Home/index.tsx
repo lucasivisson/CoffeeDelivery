@@ -9,7 +9,7 @@ import {
   PackageIconContainer,
   CoffeeIconContainer,
   CoffeeListContainer,
-  HomeContainer,
+  DefaultContainer,
 } from './style'
 import { ShoppingCart, Timer, Package, Coffee } from 'phosphor-react'
 import { Product } from './components/Product'
@@ -17,7 +17,7 @@ import { coffees } from '../../data/data.json'
 
 export function Home() {
   return (
-    <HomeContainer>
+    <DefaultContainer>
       <MarketingHomeContainer>
         <TextBoxContainer>
           <div>
@@ -80,6 +80,6 @@ export function Home() {
           })}
         </body>
       </CoffeeListContainer>
-    </HomeContainer>
+    </DefaultContainer>
   )
 }

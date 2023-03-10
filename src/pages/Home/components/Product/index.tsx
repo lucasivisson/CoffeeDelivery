@@ -13,20 +13,21 @@ import { Link } from 'react-router-dom'
 type ProductData = {
   img: string
   types: string[]
-  price: string
+  price: number
   title: string
   subtitle: string
 }
 
 export function Product({ img, types, price, title, subtitle }: ProductData) {
-  const { onAddProduct, onRemoveProduct, products } = useProductContext()
+  const { onIncrementProduct, onDecrementProduct, products } =
+    useProductContext()
 
   function handleIncrementProduct() {
-    onAddProduct(title, price, img)
+    onIncrementProduct(title, price, img)
   }
 
   function handleDecrementProduct() {
-    onRemoveProduct(title)
+    onDecrementProduct(title)
   }
 
   const product = products.find((product) => product.title === title)
@@ -46,7 +47,12 @@ export function Product({ img, types, price, title, subtitle }: ProductData) {
       <CoffeePriceContainer>
         <div>
           <span className="dollar-sign">R$</span>
-          <span className="coffee-price">{price}</span>
+          <span className="coffee-price">
+            {price.toLocaleString('pt-BR', {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}
+          </span>
         </div>
         <ButtonsContainer>
           <AddCoffeButtonContainer>
