@@ -15,56 +15,85 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Input } from './components/Input'
+import { useNavigate } from 'react-router-dom'
+import { useProductContext } from '../../contexts/ProductContext'
+
+const schema = yup.object().shape({
+  zip_code: yup
+    .number()
+    .required('O campo é obrigatório')
+    .test(
+      'len',
+      'O campo deve ter no mínimo 8 caracteres',
+      (val) => val.toString().length === 8,
+    ),
+  street: yup
+    .string()
+    .required('O campo é obrigatório')
+    .min(1)
+    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+  number: yup
+    .number()
+    .required('O campo é obrigatório')
+    .positive()
+    .test(
+      'len',
+      'O campo deve ter no máximo 10 caracteres',
+      (val) => val.toString().length <= 10,
+    ),
+  complement: yup.string().optional().max(250),
+  neighborhood: yup
+    .string()
+    .required('O campo é obrigatório')
+    .min(1)
+    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+  city: yup
+    .string()
+    .required('O campo é obrigatório')
+    .min(3, 'O campo deve ter no mínimo 3 caracteres')
+    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+  uf: yup
+    .string()
+    .required('O campo é obrigatório')
+    .min(2, 'O campo deve ter no mínimo 2 caracteres')
+    .max(2, 'O campo deve ter no máximo 2 caracteres'),
+  way_to_pay: yup.string().required('O campo é obrigatório'),
+})
+
+export interface CheckoutData {
+  zip_code: number
+  street: string
+  number: number
+  complement: string
+  neighborhood: string
+  city: string
+  uf: string
+  way_to_pay: string
+}
 
 export function Checkout() {
-  const schema = yup.object().shape({
-    zip_code: yup.number().required('O campo é obrigatório').min(8).max(8),
-    street: yup
-      .string()
-      .required('O campo é obrigatório')
-      .min(1)
-      .max(250, 'O campo deve ter no máximo 250 caracteres'),
-    number: yup
-      .number()
-      .required('O campo é obrigatório')
-      .positive()
-      .min(1)
-      .max(250, 'O campo deve ter no máximo 250 caracteres'),
-    complement: yup.string().optional().max(250),
-    neighborhood: yup
-      .string()
-      .required('O campo é obrigatório')
-      .min(1)
-      .max(250, 'O campo deve ter no máximo 250 caracteres'),
-    city: yup
-      .string()
-      .required('O campo é obrigatório')
-      .min(3, 'O campo deve ter no mínimo 3 caracteres')
-      .max(250, 'O campo deve ter no máximo 250 caracteres'),
-    uf: yup
-      .string()
-      .required('O campo é obrigatório')
-      .min(2, 'O campo deve ter no mínimo 2 caracteres')
-      .max(2, 'O campo deve ter no máximo 2 caracteres'),
-    way_to_pay: yup.string().required('O campo é obrigatório'),
-  })
-
+  const { onFinishCheckout } = useProductContext()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+    reset,
+  } = useForm<CheckoutData>({
     resolver: yupResolver(schema),
   })
 
-  function handleCreateNewOrder(data: any) {
-    console.log(data)
+  const navigate = useNavigate()
+
+  function handleCreateNewOrder(data: CheckoutData) {
+    onFinishCheckout(data)
+    reset()
+    navigate('/checkout-concluded')
   }
 
   return (
-    <DefaultContainer>
-      <OrderContainer>
-        <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+    <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
+      <DefaultContainer>
+        <OrderContainer>
           <body>
             <p>Complete seu pedido</p>
 
@@ -157,11 +186,10 @@ export function Checkout() {
                 Dinheiro
               </label>
             </div>
-            <button type="submit">dasdasdadas</button>
           </CheckoutFooterContainer>
-        </form>
-      </OrderContainer>
-      <Sidebar />
-    </DefaultContainer>
+        </OrderContainer>
+        <Sidebar />
+      </DefaultContainer>
+    </form>
   )
 }

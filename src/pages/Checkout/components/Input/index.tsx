@@ -1,11 +1,12 @@
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { UseFormRegister } from 'react-hook-form'
+import { CheckoutData } from '../..'
 
 type CheckoutInputType = {
   label?: string
-  name: string
+  name: keyof CheckoutData
   type: string
   placeholder: string
-  register: UseFormRegister<FieldValues>
+  register: UseFormRegister<CheckoutData>
   valueAsNumber?: boolean
   error?: string
 }
@@ -19,14 +20,13 @@ export function Input({
   valueAsNumber = false,
   error,
 }: CheckoutInputType) {
-  console.log(error)
   return (
     <>
       {label && <label htmlFor={name}>{label}</label>}
       <input
         type={type}
         placeholder={placeholder}
-        {...(register(name), { valueAsNumber })}
+        {...register(name, { valueAsNumber })}
       />
       {error && <p>{error}</p>}
     </>

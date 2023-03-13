@@ -8,6 +8,8 @@ export function Sidebar() {
 
   let total = 0
 
+  const haveItemsInCart = total !== 0
+
   return (
     <SidebarContainer>
       <h2>Cafés selecionados</h2>
@@ -40,7 +42,9 @@ export function Sidebar() {
             <span>Entrega</span>
             <span>R$ 3,70</span>
           </div>
-          <button>Confirma Pedido</button>
+          <button type="submit" disabled={!haveItemsInCart}>
+            Confirma Pedido
+          </button>
         </footer>
       </div>
     </SidebarContainer>
