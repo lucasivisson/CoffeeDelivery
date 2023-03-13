@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
+import { CheckoutData } from '../pages/Checkout'
 
 interface IChildrenProps {
   children: React.ReactNode
@@ -13,9 +14,11 @@ export type ProductRequest = {
 
 type ProductContextType = {
   products: ProductRequest[]
+  checkoutData: CheckoutData
   onIncrementProduct: (title: string, price: number, img: string) => void
   onDecrementProduct: (title: string) => void
   onRemoveProduct: (title: string) => void
+  onFinishCheckout: (data: CheckoutData) => void
 }
 
 export const ProductContext = createContext<ProductContextType>(
@@ -24,6 +27,9 @@ export const ProductContext = createContext<ProductContextType>(
 
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
   const [products, setProducts] = useState<ProductRequest[]>([])
+  const [checkoutData, setCheckoutData] = useState<CheckoutData>(
+    {} as CheckoutData,
+  )
 
   function onIncrementProduct(title: string, price: number, img: string) {
     const productFounded = products.find((product) => product.title === title)
@@ -80,13 +86,19 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
     setProducts(filteredProducts)
   }
 
+  function onFinishCheckout(data: CheckoutData) {
+    setCheckoutData(data)
+  }
+
   return (
     <ProductContext.Provider
       value={{
         products,
+        checkoutData,
         onIncrementProduct,
         onDecrementProduct,
         onRemoveProduct,
+        onFinishCheckout,
       }}
     >
       {children}
