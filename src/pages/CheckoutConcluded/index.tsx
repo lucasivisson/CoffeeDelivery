@@ -4,6 +4,7 @@ import {
   IconContainer,
   InfoContainer,
   TotalInfoContainer,
+  HeaderContainer,
 } from './styles'
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 import checkoutConcluded from '../../assets/checkoutConcluded.svg'
@@ -11,10 +12,10 @@ import checkoutConcluded from '../../assets/checkoutConcluded.svg'
 export function CheckoutConcluded() {
   return (
     <DefaultContainer>
-      <header>
+      <HeaderContainer>
         <p>Uhu! Pedido confirmado</p>
         <span>Agora é só aguardar que logo o café chegará até você</span>
-      </header>
+      </HeaderContainer>
       <CheckoutConcludedInfoContainer>
         <TotalInfoContainer>
           <InfoContainer withoutBorder>
