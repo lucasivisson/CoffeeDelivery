@@ -2,12 +2,11 @@ import styled, { DefaultTheme } from 'styled-components'
 
 export const DefaultContainer = styled.div`
   display: flex;
-  margin: 0 auto;
+  margin: 2rem auto 0;
   padding: 0 1rem;
   flex-direction: column;
   max-width: 72rem;
   height: 100%;
-  margin-top: 2rem;
 `
 
 export const HeaderContainer = styled.header`

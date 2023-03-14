@@ -1,6 +1,11 @@
 import { useProductContext } from '../../../../contexts/ProductContext'
 import { CoffeesSelected } from '../CoffeesSelected'
-import { SidebarContainer } from './styles'
+import {
+  SidebarContainer,
+  FooterContainer,
+  CurrencyContainer,
+  CoffeeListContainer,
+} from './styles'
 
 export function Sidebar() {
   const productContext = useProductContext()
@@ -8,16 +13,15 @@ export function Sidebar() {
 
   let total = 0
 
-  // let haveItemsInCart = false
+  let haveItemsInCart = false
 
   return (
     <SidebarContainer>
-      <h2>Cafés selecionados</h2>
       <div>
-        <main>
+        <CoffeeListContainer>
           {products.map((product) => {
             total += product.price * product.amount
-            // haveItemsInCart = true
+            haveItemsInCart = true
             return (
               <CoffeesSelected
                 key={product.title}
@@ -28,9 +32,10 @@ export function Sidebar() {
               />
             )
           })}
-        </main>
-        <footer>
-          <div>
+        </CoffeeListContainer>
+        <FooterContainer haveItemsInCart>
+          <hr />
+          <CurrencyContainer>
             <span>Total de itens</span>
             <span>
               {total.toLocaleString('pt-BR', {
@@ -38,15 +43,23 @@ export function Sidebar() {
                 currency: 'BRL',
               })}
             </span>
-          </div>
-          <div>
+          </CurrencyContainer>
+          <CurrencyContainer>
             <span>Entrega</span>
-            <span>R$ 3,70</span>
-          </div>
-          <button type="submit" /* disabled={!haveItemsInCart} */>
-            Confirma Pedido
+            <span>R$ 3,50</span>
+          </CurrencyContainer>
+          <CurrencyContainer itsTotal>
+            <span>
+              <b>Total</b>
+            </span>
+            <span>
+              <b>R$ 107,70</b>
+            </span>
+          </CurrencyContainer>
+          <button type="submit" disabled={!haveItemsInCart}>
+            Confirmar Pedido
           </button>
-        </footer>
+        </FooterContainer>
       </div>
     </SidebarContainer>
   )
