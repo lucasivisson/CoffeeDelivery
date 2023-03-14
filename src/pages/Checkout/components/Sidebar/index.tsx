@@ -8,7 +8,7 @@ export function Sidebar() {
 
   let total = 0
 
-  const haveItemsInCart = total !== 0
+  // let haveItemsInCart = false
 
   return (
     <SidebarContainer>
@@ -17,6 +17,7 @@ export function Sidebar() {
         <main>
           {products.map((product) => {
             total += product.price * product.amount
+            // haveItemsInCart = true
             return (
               <CoffeesSelected
                 key={product.title}
@@ -42,7 +43,7 @@ export function Sidebar() {
             <span>Entrega</span>
             <span>R$ 3,70</span>
           </div>
-          <button type="submit" disabled={!haveItemsInCart}>
+          <button type="submit" /* disabled={!haveItemsInCart} */>
             Confirma Pedido
           </button>
         </footer>
