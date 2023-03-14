@@ -4,10 +4,7 @@ import {
   TextBoxContainer,
   GeneralListContainer,
   ListContainer,
-  ShoppingCardIconContainer,
-  TimerIconContainer,
-  PackageIconContainer,
-  CoffeeIconContainer,
+  IconContainer,
   CoffeeListContainer,
   DefaultContainer,
 } from './style'
@@ -30,29 +27,29 @@ export function Home() {
           <GeneralListContainer>
             <ListContainer>
               <li>
-                <ShoppingCardIconContainer>
+                <IconContainer color="yellow-dark">
                   <ShoppingCart size={18} weight="fill" />
-                </ShoppingCardIconContainer>
+                </IconContainer>
                 Compra simples e segura
               </li>
               <li>
-                <TimerIconContainer>
+                <IconContainer color="yellow">
                   <Timer size={18} weight="fill" />
-                </TimerIconContainer>
+                </IconContainer>
                 Entrega rápida e rastreada
               </li>
             </ListContainer>
             <ListContainer>
               <li>
-                <PackageIconContainer>
+                <IconContainer color="base-text">
                   <Package size={18} weight="fill" />
-                </PackageIconContainer>
+                </IconContainer>
                 Embalagem mantém o café intacto
               </li>
               <li>
-                <CoffeeIconContainer>
+                <IconContainer color="purple">
                   <Coffee size={18} weight="fill" />
-                </CoffeeIconContainer>
+                </IconContainer>
                 O café chega fresquinho até você
               </li>
             </ListContainer>

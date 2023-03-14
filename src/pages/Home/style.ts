@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { DefaultTheme } from 'styled-components'
 
 export const DefaultContainer = styled.div`
   display: flex;
@@ -69,28 +69,17 @@ export const ListContainer = styled.ul`
   li:nth-child(2) {
     margin-top: 1.5rem;
   }
-
-  li > span {
-    color: ${(props) => props.theme.white};
-    border-radius: 15rem;
-    padding: 0.5rem 0.6rem;
-  }
 `
 
-export const ShoppingCardIconContainer = styled.span`
-  background: ${(props) => props.theme['yellow-dark']};
-`
+export interface IconContainerProps {
+  color: keyof DefaultTheme
+}
 
-export const TimerIconContainer = styled.span`
-  background: ${(props) => props.theme.yellow};
-`
-
-export const PackageIconContainer = styled.span`
-  background: ${(props) => props.theme['base-text']};
-`
-
-export const CoffeeIconContainer = styled.span`
-  background: ${(props) => props.theme.purple};
+export const IconContainer = styled.span<IconContainerProps>`
+  background: ${(props) => props.theme[props.color]};
+  color: ${(props) => props.theme.white};
+  border-radius: 15rem;
+  padding: 0.5rem 0.6rem 0.4rem;
 `
 
 export const CoffeeListContainer = styled.body`
