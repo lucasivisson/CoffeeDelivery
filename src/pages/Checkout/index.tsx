@@ -10,6 +10,7 @@ import {
   CheckoutFooterContainer,
   DefaultContainer,
   OrderContainer,
+  SidebarContainer,
 } from './styles'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -188,7 +189,10 @@ export function Checkout() {
             </div>
           </CheckoutFooterContainer>
         </OrderContainer>
-        <Sidebar />
+        <SidebarContainer>
+          <p>Cafés selecionados</p>
+          <Sidebar />
+        </SidebarContainer>
       </DefaultContainer>
     </form>
   )
