@@ -49,6 +49,7 @@ export const CoffeesSelectedContainer = styled.div`
   align-items: flex-start; */
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
+  margin: 1rem 0;
 
   img {
     width: 4rem;
@@ -61,7 +62,6 @@ export const CoffeesSelectedContainer = styled.div`
 `
 
 export const CoffeeBoxContainer = styled.div`
-  margin: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
