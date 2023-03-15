@@ -33,8 +33,7 @@ export function Sidebar() {
             )
           })}
         </CoffeeListContainer>
-        <FooterContainer haveItemsInCart>
-          <hr />
+        <FooterContainer>
           <CurrencyContainer>
             <span>Total de itens</span>
             <span>

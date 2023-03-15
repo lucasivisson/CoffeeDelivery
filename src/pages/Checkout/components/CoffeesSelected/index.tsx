@@ -3,6 +3,7 @@ import {
   AddCoffeButtonContainer,
   CoffeesSelectedContainer,
   CoffeeBoxContainer,
+  CoffeeMainBoxContainer,
 } from './styles'
 import { useProductContext } from '../../../../contexts/ProductContext'
 
@@ -36,29 +37,32 @@ export function CoffeesSelected({
   }
 
   return (
-    <CoffeesSelectedContainer>
-      <img src={`src/assets/coffees/${img}.svg`} alt="" />
-      <CoffeeBoxContainer>
-        <p>{title}</p>
-        <ActionsContainer>
-          <AddCoffeButtonContainer>
-            <button className="minus" onClick={handleDecrementProduct}>
-              -
-            </button>
-            {amount}
-            <button className="plus" onClick={handleIncrementProduct}>
-              +
-            </button>
-          </AddCoffeButtonContainer>
-          <button onClick={handleRemoveProduct}>Remover</button>
-        </ActionsContainer>
-      </CoffeeBoxContainer>
-      <p>
-        {price.toLocaleString('pt-BR', {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}
-      </p>
-    </CoffeesSelectedContainer>
+    <CoffeeMainBoxContainer>
+      <CoffeesSelectedContainer>
+        <img src={`src/assets/coffees/${img}.svg`} alt="" />
+        <CoffeeBoxContainer>
+          <p>{title}</p>
+          <ActionsContainer>
+            <AddCoffeButtonContainer>
+              <button className="minus" onClick={handleDecrementProduct}>
+                -
+              </button>
+              {amount}
+              <button className="plus" onClick={handleIncrementProduct}>
+                +
+              </button>
+            </AddCoffeButtonContainer>
+            <button onClick={handleRemoveProduct}>Remover</button>
+          </ActionsContainer>
+        </CoffeeBoxContainer>
+        <p>
+          {price.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </p>
+      </CoffeesSelectedContainer>
+      <hr />
+    </CoffeeMainBoxContainer>
   )
 }

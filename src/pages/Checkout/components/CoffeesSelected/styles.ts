@@ -43,11 +43,36 @@ export const ActionsContainer = styled.div`
 `
 
 export const CoffeesSelectedContainer = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: colum;
+  justify-content: space-between;
+  align-items: flex-start; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 1rem;
+  }
+  > p {
+    text-align: end;
+  }
 `
 
 export const CoffeeBoxContainer = styled.div`
+  margin: 1rem 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+`
+
+export const CoffeeMainBoxContainer = styled.div`
+  hr {
+    height: 1px;
+    width: 100%;
+    border: none;
+    background-color: ${(props) => props.theme['base-button']};
+    margin-bottom: 1rem;
+  }
 `

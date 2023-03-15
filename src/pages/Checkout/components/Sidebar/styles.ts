@@ -16,25 +16,12 @@ export const CoffeeListContainer = styled.div`
   width: 20rem;
 `
 
-export interface FooterContainerProps {
-  haveItemsInCart?: boolean
-}
-
-export const FooterContainer = styled.footer<FooterContainerProps>`
+export const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 20rem;
-
-  hr {
-    display: ${(props) => (props.haveItemsInCart ? 'block' : 'none')};
-    height: 1px;
-    width: 100%;
-    border: none;
-    background-color: ${(props) => props.theme['base-button']};
-    margin-bottom: 1rem;
-  }
 
   button {
     width: 100%;
