@@ -43,6 +43,8 @@ export const ActionsContainer = styled.div`
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    padding: 0 0.5rem;
+    color: ${(props) => props.theme['base-text']};
   }
 
   .icon {
@@ -60,13 +62,9 @@ export interface CoffessSelectedContainerProps {
 }
 
 export const CoffeesSelectedContainer = styled.div<CoffessSelectedContainerProps>`
-  /* display: flex;
-  flex-direction: colum;
-  justify-content: space-between;
-  align-items: flex-start; */
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
-  margin: ${(props) => (props.itsFirst ? '0rem 0rem 1rem 0rem' : '1rem 0')};
+  margin: ${(props) => (props.itsFirst ? '0rem 0rem 2rem 0rem' : '2rem 0rem')};
 
   img {
     width: 4rem;
@@ -75,6 +73,8 @@ export const CoffeesSelectedContainer = styled.div<CoffessSelectedContainerProps
   }
   > p {
     text-align: end;
+    color: ${(props) => props.theme['base-text']};
+    font-weight: 700;
   }
 `
 

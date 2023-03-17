@@ -21,6 +21,7 @@ export function CoffeesSelected({
   price,
   amount,
   img,
+  itsFirst,
 }: CoffeesSelectedType) {
   const productContext = useProductContext()
   const { onIncrementProduct, onDecrementProduct, onRemoveProduct } =
@@ -40,7 +41,7 @@ export function CoffeesSelected({
 
   return (
     <CoffeeMainBoxContainer>
-      <CoffeesSelectedContainer itsFirst>
+      <CoffeesSelectedContainer itsFirst={itsFirst}>
         <img src={`src/assets/coffees/${img}.svg`} alt="" />
         <CoffeeBoxContainer>
           <p>{title}</p>

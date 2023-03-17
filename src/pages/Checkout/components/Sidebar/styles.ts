@@ -35,6 +35,11 @@ export const FooterContainer = styled.footer`
     text-transform: uppercase;
     font-weight: 700;
   }
+
+  button:disabled {
+    background: ${(props) => props.theme['yellow-dark']};
+    color: ${(props) => props.theme['base-hover']};
+  }
 `
 
 export interface CurrencyContainerProps {
