@@ -18,38 +18,55 @@ export const AddCoffeButtonContainer = styled.div`
     color: ${(props) => props.theme.purple};
   }
 
-  .minus {
+  .icon {
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
-  }
-
-  .minus:hover {
-    color: ${(props) => props.theme['purple-dark']};
-  }
-
-  .plus {
-    cursor: pointer;
-  }
-
-  .plus:hover {
-    color: ${(props) => props.theme['purple-dark']};
     transition: all 0.2s ease-in-out;
+  }
+
+  .icon:hover {
+    color: ${(props) => props.theme['purple-dark']};
   }
 `
 
 export const ActionsContainer = styled.div`
   display: flex;
   flex-direction: row;
+  gap: 0.5rem;
+
+  > button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .icon {
+    color: ${(props) => props.theme.purple};
+    transition: all 0.2s ease-in-out;
+  }
+
+  .icon:hover {
+    color: ${(props) => props.theme['purple-dark']};
+  }
 `
 
-export const CoffeesSelectedContainer = styled.div`
+export interface CoffessSelectedContainerProps {
+  itsFirst: boolean
+}
+
+export const CoffeesSelectedContainer = styled.div<CoffessSelectedContainerProps>`
   /* display: flex;
   flex-direction: colum;
   justify-content: space-between;
   align-items: flex-start; */
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
-  margin: 1rem 0;
+  margin: ${(props) => (props.itsFirst ? '0rem 0rem 1rem 0rem' : '1rem 0')};
 
   img {
     width: 4rem;

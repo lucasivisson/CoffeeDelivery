@@ -13,17 +13,17 @@ export function Sidebar() {
 
   let total = 0
 
-  let haveItemsInCart = false
+  const haveItemsInCart = products.length > 0
 
   return (
     <SidebarContainer>
       <div>
         <CoffeeListContainer>
-          {products.map((product) => {
+          {products.map((product, index) => {
             total += product.price * product.amount
-            haveItemsInCart = true
             return (
               <CoffeesSelected
+                itsFirst={index === 0}
                 key={product.title}
                 title={product.title}
                 price={product.price}
@@ -52,7 +52,12 @@ export function Sidebar() {
               <b>Total</b>
             </span>
             <span>
-              <b>R$ 107,70</b>
+              <b>
+                {(total + 3.5).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </b>
             </span>
           </CurrencyContainer>
           <button type="submit" disabled={!haveItemsInCart}>

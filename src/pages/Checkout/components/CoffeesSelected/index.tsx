@@ -6,12 +6,14 @@ import {
   CoffeeMainBoxContainer,
 } from './styles'
 import { useProductContext } from '../../../../contexts/ProductContext'
+import { Trash } from 'phosphor-react'
 
 type CoffeesSelectedType = {
   title: string
   price: number
   amount: number
   img: string
+  itsFirst: boolean
 }
 
 export function CoffeesSelected({
@@ -38,21 +40,23 @@ export function CoffeesSelected({
 
   return (
     <CoffeeMainBoxContainer>
-      <CoffeesSelectedContainer>
+      <CoffeesSelectedContainer itsFirst>
         <img src={`src/assets/coffees/${img}.svg`} alt="" />
         <CoffeeBoxContainer>
           <p>{title}</p>
           <ActionsContainer>
             <AddCoffeButtonContainer>
-              <button className="minus" onClick={handleDecrementProduct}>
+              <button className="icon" onClick={handleDecrementProduct}>
                 -
               </button>
               {amount}
-              <button className="plus" onClick={handleIncrementProduct}>
+              <button className="icon" onClick={handleIncrementProduct}>
                 +
               </button>
             </AddCoffeButtonContainer>
-            <button onClick={handleRemoveProduct}>Remover</button>
+            <button onClick={handleRemoveProduct}>
+              <Trash className="icon" size={18} /> Remover
+            </button>
           </ActionsContainer>
         </CoffeeBoxContainer>
         <p>
