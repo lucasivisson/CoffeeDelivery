@@ -11,6 +11,9 @@ import {
   DefaultContainer,
   OrderContainer,
   SidebarContainer,
+  OrderBodyContainer,
+  OrderSubtitleContainer,
+  RadioGroupContainer,
 } from './styles'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -95,14 +98,17 @@ export function Checkout() {
     <form onSubmit={handleSubmit(handleCreateNewOrder)} action="">
       <DefaultContainer>
         <OrderContainer>
-          <body>
-            <p>Complete seu pedido</p>
-
-            <span>
-              <MapPinLine size={18} />
-              Endereço de Entrega
-            </span>
-            <span>Informe o endereço onde deseja receber seu pedido</span>
+          <p>Complete seu pedido</p>
+          <OrderBodyContainer>
+            <OrderSubtitleContainer color="yellow-dark">
+              <div>
+                <MapPinLine size={20} />
+              </div>
+              <div>
+                <p>Endereço de Entrega</p>
+                <span>Informe o endereço onde deseja receber seu pedido</span>
+              </div>
+            </OrderSubtitleContainer>
 
             <Input
               name="zip_code"
@@ -161,16 +167,21 @@ export function Checkout() {
               type="text"
               error={errors.uf?.message?.toString()}
             />
-          </body>
+          </OrderBodyContainer>
           <CheckoutFooterContainer>
-            <p>
-              <CurrencyDollar size={18} />
-              Pagamento
-            </p>
-            <span>
-              O pagamento é feito na entrega. Escolha a forma que deseja pagar
-            </span>
-            <div>
+            <OrderSubtitleContainer color="purple">
+              <div>
+                <CurrencyDollar size={20} />
+              </div>
+              <div>
+                <p>Pagamento</p>
+                <span>
+                  O pagamento é feito na entrega. Escolha a forma que deseja
+                  pagar
+                </span>
+              </div>
+            </OrderSubtitleContainer>
+            <RadioGroupContainer>
               <input type="radio" {...register('way_to_pay')}></input>
               <label htmlFor="credit_card">
                 <CreditCard size={18} />
@@ -186,7 +197,7 @@ export function Checkout() {
                 <Money size={18} />
                 Dinheiro
               </label>
-            </div>
+            </RadioGroupContainer>
           </CheckoutFooterContainer>
         </OrderContainer>
         <SidebarContainer>
