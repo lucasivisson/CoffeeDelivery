@@ -100,6 +100,11 @@ export const RadioGroupContainer = styled.div`
     background: ${(props) => props.theme['purple-light']};
     border: 1px solid ${(props) => props.theme.purple};
   }
+
+  p {
+    margin-top: 0.5rem;
+    color: ${(props) => props.theme.red};
+  }
 `
 
 export const BoxLabelContainer = styled.div`
@@ -112,5 +117,38 @@ export const BoxLabelContainer = styled.div`
 
   div {
     color: ${(props) => props.theme.purple};
+  }
+`
+
+export const NumberComplementContainer = styled.div`
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 1rem;
+`
+
+export const NeighborhoodCityUfContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 5rem;
+  gap: 1rem;
+`
+
+export const InputsContainer = styled.div`
+  & > input {
+    margin-bottom: 1rem;
+  }
+
+  & > div {
+    margin-bottom: 1rem;
+  }
+
+  input {
+    padding: 1rem;
+    color: ${(props) => props.theme['base-label']};
+    background: ${(props) => props.theme['base-input']};
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: ${(props) => props.theme.red};
   }
 `

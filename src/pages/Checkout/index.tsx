@@ -15,6 +15,9 @@ import {
   OrderSubtitleContainer,
   RadioGroupContainer,
   BoxLabelContainer,
+  NeighborhoodCityUfContainer,
+  NumberComplementContainer,
+  InputsContainer,
 } from './styles'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -26,43 +29,47 @@ import { useProductContext } from '../../contexts/ProductContext'
 const schema = yup.object().shape({
   zip_code: yup
     .number()
-    .required('O campo é obrigatório')
+    .typeError('O campo CEP deve ser preenchido corretamente')
+    .required('O campo CEP é obrigatório')
     .test(
       'len',
-      'O campo deve ter no mínimo 8 caracteres',
+      'O campo CEP deve ter no mínimo 8 caracteres',
       (val) => val.toString().length === 8,
     ),
   street: yup
     .string()
-    .required('O campo é obrigatório')
-    .min(1)
-    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+    .required('O campo Rua é obrigatório')
+    .max(250, 'O campo Rua deve ter no máximo 250 caracteres'),
   number: yup
     .number()
+    .typeError('O campo número deve ser preenchido corretamente')
     .required('O campo é obrigatório')
     .positive()
     .test(
       'len',
-      'O campo deve ter no máximo 10 caracteres',
+      'O campo Rua deve ter no máximo 10 caracteres',
       (val) => val.toString().length <= 10,
     ),
-  complement: yup.string().optional().max(250),
+  complement: yup
+    .string()
+    .optional()
+    .max(250, 'O campo Complemento deve ter no máximo 250 caracteres'),
   neighborhood: yup
     .string()
-    .required('O campo é obrigatório')
+    .required('O Bairro campo é obrigatório')
     .min(1)
-    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+    .max(250, 'O campo Bairro deve ter no máximo 250 caracteres'),
   city: yup
     .string()
-    .required('O campo é obrigatório')
-    .min(3, 'O campo deve ter no mínimo 3 caracteres')
-    .max(250, 'O campo deve ter no máximo 250 caracteres'),
+    .required('O campo Cidade é obrigatório')
+    .min(3, 'O campo Cidade deve ter no mínimo 3 caracteres')
+    .max(250, 'O campo Cidade deve ter no máximo 250 caracteres'),
   uf: yup
     .string()
-    .required('O campo é obrigatório')
-    .min(2, 'O campo deve ter no mínimo 2 caracteres')
-    .max(2, 'O campo deve ter no máximo 2 caracteres'),
-  way_to_pay: yup.string().required('O campo é obrigatório'),
+    .required('O campo UF é obrigatório')
+    .min(2, 'O campo UF deve ter no mínimo 2 caracteres')
+    .max(2, 'O campo UF deve ter no máximo 2 caracteres'),
+  way_to_pay: yup.string().required('A forma de pagamento é obrigatória'),
 })
 
 export interface CheckoutData {
@@ -85,6 +92,14 @@ export function Checkout() {
     reset,
   } = useForm<CheckoutData>({
     resolver: yupResolver(schema),
+    defaultValues: {
+      street: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      uf: '',
+      way_to_pay: '',
+    },
   })
 
   const navigate = useNavigate()
@@ -111,63 +126,74 @@ export function Checkout() {
               </div>
             </OrderSubtitleContainer>
 
-            <Input
-              name="zip_code"
-              placeholder="CEP"
-              register={register}
-              type="number"
-              error={errors.zip_code?.message?.toString()}
-              valueAsNumber={true}
-            />
+            <InputsContainer>
+              <Input
+                name="zip_code"
+                className="zip_code"
+                placeholder="CEP"
+                register={register}
+                type="number"
+                error={errors.zip_code?.message?.toString()}
+                valueAsNumber={true}
+                display={'block'}
+              />
 
-            <Input
-              name="street"
-              placeholder="Rua"
-              register={register}
-              type="text"
-              error={errors.street?.message?.toString()}
-            />
+              <Input
+                name="street"
+                className="street"
+                placeholder="Rua"
+                register={register}
+                type="text"
+                error={errors.street?.message?.toString()}
+                display={'block'}
+                width={'100%'}
+              />
 
-            <Input
-              name="number"
-              placeholder="Número"
-              register={register}
-              type="number"
-              error={errors.number?.message?.toString()}
-              valueAsNumber={true}
-            />
+              <NumberComplementContainer>
+                <Input
+                  name="number"
+                  placeholder="Número"
+                  register={register}
+                  type="number"
+                  error={errors.number?.message?.toString()}
+                  valueAsNumber={true}
+                />
 
-            <Input
-              name="complement"
-              placeholder="Complemento"
-              register={register}
-              type="text"
-              error={errors.complement?.message?.toString()}
-            />
+                <Input
+                  name="complement"
+                  placeholder="Complemento"
+                  register={register}
+                  type="text"
+                  error={errors.complement?.message?.toString()}
+                />
+              </NumberComplementContainer>
 
-            <Input
-              name="neighborhood"
-              placeholder="Bairro"
-              register={register}
-              type="text"
-              error={errors.neighborhood?.message?.toString()}
-            />
+              <NeighborhoodCityUfContainer>
+                <Input
+                  name="neighborhood"
+                  placeholder="Bairro"
+                  register={register}
+                  type="text"
+                  error={errors.neighborhood?.message?.toString()}
+                />
 
-            <Input
-              name="city"
-              placeholder="Cidade"
-              register={register}
-              type="text"
-              error={errors.city?.message?.toString()}
-            />
+                <Input
+                  name="city"
+                  placeholder="Cidade"
+                  register={register}
+                  type="text"
+                  error={errors.city?.message?.toString()}
+                />
 
-            <Input
-              name="uf"
-              placeholder="UF"
-              register={register}
-              type="text"
-              error={errors.uf?.message?.toString()}
-            />
+                <Input
+                  name="uf"
+                  placeholder="UF"
+                  register={register}
+                  type="text"
+                  error={errors.uf?.message?.toString()}
+                />
+              </NeighborhoodCityUfContainer>
+            </InputsContainer>
           </OrderBodyContainer>
           <CheckoutFooterContainer>
             <OrderSubtitleContainer color="purple">
@@ -183,45 +209,50 @@ export function Checkout() {
               </div>
             </OrderSubtitleContainer>
             <RadioGroupContainer>
-              <input
-                type="radio"
-                id="credit_card"
-                {...register('way_to_pay')}
-              ></input>
-              <label htmlFor="credit_card">
-                <BoxLabelContainer>
-                  <div>
-                    <CreditCard size={18} />
-                  </div>
-                  Cartão de crédito
-                </BoxLabelContainer>
-              </label>
-              <input
-                type="radio"
-                id="debit_card"
-                {...register('way_to_pay')}
-              ></input>
-              <label htmlFor="debit_card">
-                <BoxLabelContainer>
-                  <div>
-                    <Bank size={18} />
-                  </div>
-                  Cartão de débito
-                </BoxLabelContainer>
-              </label>
-              <input
-                type="radio"
-                id="money"
-                {...register('way_to_pay')}
-              ></input>
-              <label htmlFor="money">
-                <BoxLabelContainer>
-                  <div>
-                    <Money size={18} />
-                  </div>
-                  Dinheiro
-                </BoxLabelContainer>
-              </label>
+              <div>
+                <input
+                  type="radio"
+                  id="credit_card"
+                  {...register('way_to_pay')}
+                ></input>
+                <label htmlFor="credit_card">
+                  <BoxLabelContainer>
+                    <div>
+                      <CreditCard size={18} />
+                    </div>
+                    Cartão de crédito
+                  </BoxLabelContainer>
+                </label>
+                <input
+                  type="radio"
+                  id="debit_card"
+                  {...register('way_to_pay')}
+                ></input>
+                <label htmlFor="debit_card">
+                  <BoxLabelContainer>
+                    <div>
+                      <Bank size={18} />
+                    </div>
+                    Cartão de débito
+                  </BoxLabelContainer>
+                </label>
+                <input
+                  type="radio"
+                  id="money"
+                  {...register('way_to_pay')}
+                ></input>
+                <label htmlFor="money">
+                  <BoxLabelContainer>
+                    <div>
+                      <Money size={18} />
+                    </div>
+                    Dinheiro
+                  </BoxLabelContainer>
+                </label>
+              </div>
+              {errors?.way_to_pay && (
+                <p>{errors.way_to_pay?.message?.toString()}</p>
+              )}
             </RadioGroupContainer>
           </CheckoutFooterContainer>
         </OrderContainer>
