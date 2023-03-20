@@ -14,6 +14,7 @@ import {
   OrderBodyContainer,
   OrderSubtitleContainer,
   RadioGroupContainer,
+  BoxLabelContainer,
 } from './styles'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -182,20 +183,44 @@ export function Checkout() {
               </div>
             </OrderSubtitleContainer>
             <RadioGroupContainer>
-              <input type="radio" {...register('way_to_pay')}></input>
+              <input
+                type="radio"
+                id="credit_card"
+                {...register('way_to_pay')}
+              ></input>
               <label htmlFor="credit_card">
-                <CreditCard size={18} />
-                Cartão de crédito
+                <BoxLabelContainer>
+                  <div>
+                    <CreditCard size={18} />
+                  </div>
+                  Cartão de crédito
+                </BoxLabelContainer>
               </label>
-              <input type="radio" {...register('way_to_pay')}></input>
+              <input
+                type="radio"
+                id="debit_card"
+                {...register('way_to_pay')}
+              ></input>
               <label htmlFor="debit_card">
-                <Bank size={18} />
-                Cartão de débito
+                <BoxLabelContainer>
+                  <div>
+                    <Bank size={18} />
+                  </div>
+                  Cartão de débito
+                </BoxLabelContainer>
               </label>
-              <input type="radio" {...register('way_to_pay')}></input>
+              <input
+                type="radio"
+                id="money"
+                {...register('way_to_pay')}
+              ></input>
               <label htmlFor="money">
-                <Money size={18} />
-                Dinheiro
+                <BoxLabelContainer>
+                  <div>
+                    <Money size={18} />
+                  </div>
+                  Dinheiro
+                </BoxLabelContainer>
               </label>
             </RadioGroupContainer>
           </CheckoutFooterContainer>

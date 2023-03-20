@@ -36,7 +36,7 @@ export const CheckoutFooterContainer = styled.footer`
 export const SidebarContainer = styled.div`
   width: 100%;
 
-  p {
+  > p {
     font-family: 'Baloo 2', sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
@@ -80,9 +80,10 @@ export const OrderSubtitleContainer = styled.div<OrderSubtitleContainerProps>`
 `
 
 export const RadioGroupContainer = styled.div`
-  input {
+  input[type='radio'] {
     opacity: 0;
-    width: 0;
+    position: fixed;
+    width: 1px;
   }
 
   label {
@@ -90,13 +91,26 @@ export const RadioGroupContainer = styled.div`
     margin-right: 1rem;
     background-color: #ddd;
     padding: 1rem;
-    align-items: center;
-    justify-content: center;
+    width: 12rem;
     border: none;
     border-radius: 0.3rem;
   }
 
-  label:focus {
+  input[type='radio']:checked + label {
+    background: ${(props) => props.theme['purple-light']};
     border: 1px solid ${(props) => props.theme.purple};
+  }
+`
+
+export const BoxLabelContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+
+  div {
+    color: ${(props) => props.theme.purple};
   }
 `
