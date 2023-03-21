@@ -47,11 +47,19 @@ export function CoffeesSelected({
           <p>{title}</p>
           <ActionsContainer>
             <AddCoffeButtonContainer>
-              <button className="icon" onClick={handleDecrementProduct}>
+              <button
+                type="button"
+                className="icon"
+                onClick={handleDecrementProduct}
+              >
                 -
               </button>
               {amount}
-              <button className="icon" onClick={handleIncrementProduct}>
+              <button
+                type="button"
+                className="icon"
+                onClick={handleIncrementProduct}
+              >
                 +
               </button>
             </AddCoffeButtonContainer>
