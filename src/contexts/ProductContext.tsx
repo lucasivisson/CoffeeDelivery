@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useReducer } from 'react'
 import { CheckoutData } from '../pages/Checkout'
+import { productsReducer } from '../reducers/products'
 
 interface IChildrenProps {
   children: React.ReactNode
@@ -26,44 +27,7 @@ export const ProductContext = createContext<ProductContextType>(
 )
 
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
-  const [products, dispatch] = useReducer(
-    (state: ProductRequest[], action: any) => {
-      if (action.type === 'ADD_NEW_PRODUCT') {
-        return [...state, action.payload.newProduct]
-      }
-
-      if (action.type === 'INCREMENT_AMOUNT_PRODUCT') {
-        return state.map((product) => {
-          if (product.title === action.payload.title) {
-            return { ...product, amount: product.amount + 1 }
-          } else {
-            return product
-          }
-        })
-      }
-
-      if (action.type === 'UPDATE_AMOUNT_PRODUCT') {
-        return state.map((product) => {
-          if (product.title === action.payload.title) {
-            return { ...product, amount: action.payload.amount }
-          } else {
-            return product
-          }
-        })
-      }
-
-      if (action.type === 'REMOVE_PRODUCT') {
-        const filteredProducts = state.filter(
-          (product) => product.title !== action.payload.title,
-        )
-
-        return filteredProducts
-      }
-
-      return state
-    },
-    [],
-  )
+  const [products, dispatch] = useReducer(productsReducer, [])
   const [checkoutData, setCheckoutData] = useState<CheckoutData>(
     {} as CheckoutData,
   )
@@ -78,15 +42,6 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
           title,
         },
       })
-      // setProducts((state) => {
-      // return state.map((product) => {
-      //   if (product.title === title) {
-      //     return { ...product, amount: product.amount + 1 }
-      //   } else {
-      //     return product
-      //   }
-      // })
-      // })
     } else {
       const newProduct: ProductRequest = {
         title,
@@ -100,9 +55,6 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
           newProduct,
         },
       })
-      // setProducts((state) => {
-      //   return [...state, newProduct]
-      // })
     }
   }
 
@@ -121,31 +73,17 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
             amount,
           },
         })
-        // setProducts((state) => {
-        //   return state.map((product) => {
-        //     if (product.title === title) {
-        //       return { ...product, amount }
-        //     } else {
-        //       return product
-        //     }
-        //   })
-        // })
       }
     }
   }
 
   function onRemoveProduct(title: string) {
-    // const filteredProducts = products.filter(
-    //   (product) => product.title !== title,
-    // )
-
     dispatch({
       type: 'REMOVE_PRODUCT',
       payload: {
         title,
       },
     })
-    // setProducts(filteredProducts)
   }
 
   function onFinishCheckout(data: CheckoutData) {
