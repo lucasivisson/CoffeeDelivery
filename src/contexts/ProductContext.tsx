@@ -28,6 +28,38 @@ export const ProductContext = createContext<ProductContextType>(
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
   const [products, dispatch] = useReducer(
     (state: ProductRequest[], action: any) => {
+      if (action.type === 'ADD_NEW_PRODUCT') {
+        return [...state, action.payload.newProduct]
+      }
+
+      if (action.type === 'INCREMENT_AMOUNT_PRODUCT') {
+        return state.map((product) => {
+          if (product.title === action.payload.title) {
+            return { ...product, amount: product.amount + 1 }
+          } else {
+            return product
+          }
+        })
+      }
+
+      if (action.type === 'UPDATE_AMOUNT_PRODUCT') {
+        return state.map((product) => {
+          if (product.title === action.payload.title) {
+            return { ...product, amount: action.payload.amount }
+          } else {
+            return product
+          }
+        })
+      }
+
+      if (action.type === 'REMOVE_PRODUCT') {
+        const filteredProducts = state.filter(
+          (product) => product.title !== action.payload.title,
+        )
+
+        return filteredProducts
+      }
+
       return state
     },
     [],
@@ -47,13 +79,13 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
         },
       })
       // setProducts((state) => {
-      //   return state.map((product) => {
-      //     if (product.title === title) {
-      //       return { ...product, amount: product.amount + 1 }
-      //     } else {
-      //       return product
-      //     }
-      //   })
+      // return state.map((product) => {
+      //   if (product.title === title) {
+      //     return { ...product, amount: product.amount + 1 }
+      //   } else {
+      //     return product
+      //   }
+      // })
       // })
     } else {
       const newProduct: ProductRequest = {
@@ -69,7 +101,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
         },
       })
       // setProducts((state) => {
-      //   return [...state, product]
+      //   return [...state, newProduct]
       // })
     }
   }
