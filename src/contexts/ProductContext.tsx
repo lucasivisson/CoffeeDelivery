@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useReducer } from 'react'
 import { CheckoutData } from '../pages/Checkout'
 import {
-  ActionTypes,
   addNewProduct,
   incrementAmountProduct,
   removeProduct,
