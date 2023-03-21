@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useState, useReducer } from 'react'
 import { CheckoutData } from '../pages/Checkout'
-import { productsReducer } from '../reducers/products'
+import {
+  ActionTypes,
+  addNewProduct,
+  incrementAmountProduct,
+  removeProduct,
+  updateAmountProduct,
+} from '../reducers/products/actions'
+import { ProductRequest, productsReducer } from '../reducers/products/reducer'
 
 interface IChildrenProps {
   children: React.ReactNode
-}
-
-export type ProductRequest = {
-  title: string
-  price: number
-  amount: number
-  img: string
 }
 
 type ProductContextType = {
@@ -36,12 +36,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
     const productFounded = products.find((product) => product.title === title)
 
     if (productFounded) {
-      dispatch({
-        type: 'INCREMENT_AMOUNT_PRODUCT',
-        payload: {
-          title,
-        },
-      })
+      dispatch(incrementAmountProduct(title))
     } else {
       const newProduct: ProductRequest = {
         title,
@@ -49,12 +44,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
         amount: 1,
         img,
       }
-      dispatch({
-        type: 'ADD_NEW_PRODUCT',
-        payload: {
-          newProduct,
-        },
-      })
+      dispatch(addNewProduct(newProduct))
     }
   }
 
@@ -66,24 +56,13 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
       if (amount === 0) {
         onRemoveProduct(title)
       } else {
-        dispatch({
-          type: 'UPDATE_AMOUNT_PRODUCT',
-          payload: {
-            title,
-            amount,
-          },
-        })
+        dispatch(updateAmountProduct(title, amount))
       }
     }
   }
 
   function onRemoveProduct(title: string) {
-    dispatch({
-      type: 'REMOVE_PRODUCT',
-      payload: {
-        title,
-      },
-    })
+    dispatch(removeProduct(title))
   }
 
   function onFinishCheckout(data: CheckoutData) {
