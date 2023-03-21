@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useReducer } from 'react'
 import { CheckoutData } from '../pages/Checkout'
 
 interface IChildrenProps {
@@ -26,7 +26,12 @@ export const ProductContext = createContext<ProductContextType>(
 )
 
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
-  const [products, setProducts] = useState<ProductRequest[]>([])
+  const [products, dispatch] = useReducer(
+    (state: ProductRequest[], action: any) => {
+      return state
+    },
+    [],
+  )
   const [checkoutData, setCheckoutData] = useState<CheckoutData>(
     {} as CheckoutData,
   )
@@ -35,25 +40,37 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
     const productFounded = products.find((product) => product.title === title)
 
     if (productFounded) {
-      setProducts((state) => {
-        return state.map((product) => {
-          if (product.title === title) {
-            return { ...product, amount: product.amount + 1 }
-          } else {
-            return product
-          }
-        })
+      dispatch({
+        type: 'INCREMENT_AMOUNT_PRODUCT',
+        payload: {
+          title,
+        },
       })
+      // setProducts((state) => {
+      //   return state.map((product) => {
+      //     if (product.title === title) {
+      //       return { ...product, amount: product.amount + 1 }
+      //     } else {
+      //       return product
+      //     }
+      //   })
+      // })
     } else {
-      const product: ProductRequest = {
+      const newProduct: ProductRequest = {
         title,
         price,
         amount: 1,
         img,
       }
-      setProducts((state) => {
-        return [...state, product]
+      dispatch({
+        type: 'ADD_NEW_PRODUCT',
+        payload: {
+          newProduct,
+        },
       })
+      // setProducts((state) => {
+      //   return [...state, product]
+      // })
     }
   }
 
@@ -65,25 +82,38 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
       if (amount === 0) {
         onRemoveProduct(title)
       } else {
-        setProducts((state) => {
-          return state.map((product) => {
-            if (product.title === title) {
-              return { ...product, amount }
-            } else {
-              return product
-            }
-          })
+        dispatch({
+          type: 'UPDATE_AMOUNT_PRODUCT',
+          payload: {
+            title,
+            amount,
+          },
         })
+        // setProducts((state) => {
+        //   return state.map((product) => {
+        //     if (product.title === title) {
+        //       return { ...product, amount }
+        //     } else {
+        //       return product
+        //     }
+        //   })
+        // })
       }
     }
   }
 
   function onRemoveProduct(title: string) {
-    const filteredProducts = products.filter(
-      (product) => product.title !== title,
-    )
+    // const filteredProducts = products.filter(
+    //   (product) => product.title !== title,
+    // )
 
-    setProducts(filteredProducts)
+    dispatch({
+      type: 'REMOVE_PRODUCT',
+      payload: {
+        title,
+      },
+    })
+    // setProducts(filteredProducts)
   }
 
   function onFinishCheckout(data: CheckoutData) {
