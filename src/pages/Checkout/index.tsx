@@ -92,14 +92,6 @@ export function Checkout() {
     reset,
   } = useForm<CheckoutData>({
     resolver: yupResolver(schema),
-    defaultValues: {
-      street: '',
-      complement: '',
-      neighborhood: '',
-      city: '',
-      uf: '',
-      way_to_pay: '',
-    },
   })
 
   const navigate = useNavigate()
@@ -146,7 +138,6 @@ export function Checkout() {
                 type="text"
                 error={errors.street?.message?.toString()}
                 display={'block'}
-                width={'100%'}
               />
 
               <NumberComplementContainer>

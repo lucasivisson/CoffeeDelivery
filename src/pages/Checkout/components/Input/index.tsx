@@ -12,7 +12,6 @@ type CheckoutInputType = {
   valueAsNumber?: boolean
   error?: string
   display?: string
-  width?: string
 }
 
 export function Input({
@@ -25,15 +24,13 @@ export function Input({
   valueAsNumber = false,
   error,
   display,
-}: // width,
-CheckoutInputType) {
+}: CheckoutInputType) {
   return (
     <LabelInputBoxContainer>
       {label && <label htmlFor={name}>{label}</label>}
       <InputContainer
         display={display}
         className={className}
-        // width={width}
         type={type}
         placeholder={placeholder}
         {...register(name, { valueAsNumber })}
