@@ -8,8 +8,11 @@ import {
 } from './styles'
 import { MapPin, Timer, CurrencyDollar } from 'phosphor-react'
 import checkoutConcluded from '../../assets/checkoutConcluded.svg'
+import { useProductContext } from '../../contexts/ProductContext'
 
 export function CheckoutConcluded() {
+  const { checkoutData } = useProductContext()
+
   return (
     <DefaultContainer>
       <HeaderContainer>
@@ -24,9 +27,14 @@ export function CheckoutConcluded() {
             </IconContainer>
             <div>
               <p>
-                Entrega em <b>Rua João Daniel Martinelli, 102</b>
+                Entrega em{' '}
+                <b>
+                  {checkoutData.street}, {checkoutData.number}
+                </b>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {checkoutData.city}, {checkoutData.uf}
+              </p>
             </div>
           </InfoContainer>
           <InfoContainer>
@@ -47,7 +55,7 @@ export function CheckoutConcluded() {
             <div>
               <p>Pagamento na entrega</p>
               <p>
-                <b>Cartão de Crédito</b>
+                <b>{checkoutData.way_to_pay}</b>
               </p>
             </div>
           </InfoContainer>

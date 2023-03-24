@@ -205,6 +205,7 @@ export function Checkout() {
                   type="radio"
                   id="credit_card"
                   {...register('way_to_pay')}
+                  value="Cartão de Crédito"
                 ></input>
                 <label htmlFor="credit_card">
                   <BoxLabelContainer>
@@ -218,6 +219,7 @@ export function Checkout() {
                   type="radio"
                   id="debit_card"
                   {...register('way_to_pay')}
+                  value="Cartão de Débito"
                 ></input>
                 <label htmlFor="debit_card">
                   <BoxLabelContainer>
@@ -231,6 +233,7 @@ export function Checkout() {
                   type="radio"
                   id="money"
                   {...register('way_to_pay')}
+                  value="Dinheiro"
                 ></input>
                 <label htmlFor="money">
                   <BoxLabelContainer>
