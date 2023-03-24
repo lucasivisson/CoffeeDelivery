@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useReducer } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useReducer,
+  useEffect,
+} from 'react'
 import { CheckoutData } from '../pages/Checkout'
 import {
   addNewProduct,
@@ -27,10 +33,30 @@ export const ProductContext = createContext<ProductContextType>(
 )
 
 export const ProductContextProvider = ({ children }: IChildrenProps) => {
-  const [products, dispatch] = useReducer(productsReducer, [])
+  const [products, dispatch] = useReducer(
+    productsReducer,
+    [],
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@coffee-delivery:products-1.0.0',
+      )
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return initialState
+    },
+  )
   const [checkoutData, setCheckoutData] = useState<CheckoutData>(
     {} as CheckoutData,
   )
+
+  useEffect(() => {
+    const productsJSON = JSON.stringify(products)
+
+    localStorage.setItem('@coffee-delivery:products-1.0.0', productsJSON)
+  }, [products])
 
   function onIncrementProduct(title: string, price: number, img: string) {
     const productFounded = products.find((product) => product.title === title)
@@ -68,6 +94,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
   function onFinishCheckout(data: CheckoutData) {
     setCheckoutData(data)
     dispatch(clearProducts())
+    console.log(checkoutData)
   }
 
   return (
