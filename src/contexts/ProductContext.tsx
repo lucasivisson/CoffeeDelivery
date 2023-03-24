@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useReducer } from 'react'
 import { CheckoutData } from '../pages/Checkout'
 import {
   addNewProduct,
+  clearProducts,
   incrementAmountProduct,
   removeProduct,
   updateAmountProduct,
@@ -66,6 +67,7 @@ export const ProductContextProvider = ({ children }: IChildrenProps) => {
 
   function onFinishCheckout(data: CheckoutData) {
     setCheckoutData(data)
+    dispatch(clearProducts())
   }
 
   return (

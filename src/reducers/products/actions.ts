@@ -5,6 +5,7 @@ export enum ActionTypes {
   ADD_NEW_PRODUCT = 'ADD_NEW_PRODUCT',
   UPDATE_AMOUNT_PRODUCT = 'UPDATE_AMOUNT_PRODUCT',
   REMOVE_PRODUCT = 'REMOVE_PRODUCT',
+  CLEAR_PRODUCTS = 'CLEAR_PRODUCTS',
 }
 
 export function incrementAmountProduct(title: string) {
@@ -41,5 +42,11 @@ export function removeProduct(title: string) {
     payload: {
       title,
     },
+  }
+}
+
+export function clearProducts() {
+  return {
+    type: ActionTypes.CLEAR_PRODUCTS,
   }
 }

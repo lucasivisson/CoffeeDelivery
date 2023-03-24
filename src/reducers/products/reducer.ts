@@ -40,6 +40,10 @@ export function productsReducer(
       return state.filter((product) => product.title !== action.payload.title)
     }
 
+    case ActionTypes.CLEAR_PRODUCTS: {
+      return []
+    }
+
     default:
       return state
   }
